@@ -1,0 +1,58 @@
+# ==========================================
+# Environments & Virtual Envs
+# ==========================================
+.venv/
+venv/
+env/
+ENV/
+__pycache__/
+*.py[cod]
+
+# ==========================================
+# Local Vector Database & Persistent Storage
+# ==========================================
+chroma_local_store/
+*.chroma
+
+# ==========================================
+# Model Checkpoints & Weights
+# ==========================================
+*.pt
+*.onnx
+*.bin
+*.safetensors
+yolov8*.pt
+
+# ==========================================
+# Ingestion Temp Files & Extracted Keyframes
+# ==========================================
+*_keyframes/
+*_extracted.wav
+tmp*/
+*.tmp
+*.log
+
+# ==========================================
+# User Uploads & Media Test Files
+# ==========================================
+*.mp4
+*.mkv
+*.mp3
+*.wav
+*.m4a
+*.png
+*.jpg
+*.jpeg
+*.pdf
+*.docx
+*.xlsx
+*.csv
+
+# ==========================================
+# IDE & System Artifacts
+# ==========================================
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*- Copy.*

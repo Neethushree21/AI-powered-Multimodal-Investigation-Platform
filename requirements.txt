@@ -1,0 +1,40 @@
+# ==============================================================================
+# Local Multimodal & Multilingual RAG Chatbot — Dependencies
+# 100% local inference — no cloud API keys required.
+# ==============================================================================
+
+# --- Orchestration / LLM client (talks to local Ollama daemon on 127.0.0.1) ---
+ollama>=0.3.3
+
+# --- Vector store + embeddings (fully local, HuggingFace models cached on disk) ---
+langchain-core>=0.3.0
+langchain-huggingface>=0.1.0
+langchain-chroma>=0.1.4
+chromadb>=0.5.5
+sentence-transformers>=3.0.1
+
+# --- Document loading ---
+pypdf>=4.3.1
+python-docx>=1.1.2
+
+# --- Tabular parsing ---
+pandas>=2.2.2
+openpyxl>=3.1.5
+tabulate>=0.9.0
+
+# --- Audio / Video ---
+openai-whisper>=20231117
+opencv-python-headless>=4.10.0.84
+pydub>=0.25.1
+# NOTE: ffmpeg binary must be installed on the system (apt/brew), pydub/whisper
+# shell out to it. It is NOT a pip package.
+
+# --- Object detection ---
+ultralytics>=8.2.0
+
+# --- Frontend ---
+streamlit>=1.38.0
+
+# --- Utilities ---
+pillow>=10.4.0
+numpy>=1.26.4

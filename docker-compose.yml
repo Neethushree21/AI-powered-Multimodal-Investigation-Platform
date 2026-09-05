@@ -1,0 +1,26 @@
+services:
+  # Ollama Service (AI Model Engine)
+  ollama:
+    image: ollama/ollama:latest
+    container_name: local_ollama
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_storage:/root/.ollama
+
+  # Streamlit Web App Service
+  web_app:
+    build: .
+    container_name: rag_chatbot_app
+    ports:
+      - "8501:8501"
+    environment:
+      - OLLAMA_HOST=http://ollama:11434
+    depends_on:
+      - ollama
+    volumes:
+      - chroma_data:/app/chroma_local_store
+
+volumes:
+  ollama_storage:
+  chroma_data:
