@@ -55,6 +55,21 @@ streamlit run app.py
 
 Open the printed local URL (default `http://localhost:8501`).
 
+Option B: Docker Compose (Recommended for isolated setup)
+You can run the entire system (the Streamlit web app and the local Ollama engine) in containers:
+
+Build and start the containers:
+
+Bash
+docker-compose up -d --build
+Pull required models inside the running Ollama container:
+
+Bash
+docker exec -it local_ollama ollama pull llama3.2
+docker exec -it local_ollama ollama pull llama3.2-vision
+Access the app:
+Open your browser and navigate to http://localhost:8501.
+
 ## 5. Project layout
 
 ```
@@ -68,20 +83,10 @@ Open the printed local URL (default `http://localhost:8501`).
 
 ## 6. Supported uploads
 
-| Category   | Extensions                 | Pipeline                                   |
-|------------|-----------------------------|---------------------------------------------|
-| Documents  | .pdf, .docx, .txt          | Text extraction + chunking                  |
-| Tabular    | .xlsx, .csv                | Pandas → schema + Markdown chunks           |
-| Audio      | .mp3, .wav, .m4a           | ffmpeg → Whisper transcription              |
-| Video      | .mp4, .mkv                 | Whisper transcript + YOLOv8/vision keyframes|
-| Images     | .jpg, .png                 | YOLOv8 detection + llama3.2-vision summary  |
-
-## 7. Notes on scaling this prototype
-
-- Swap the local Chroma persistence directory for a networked Qdrant
-  instance if you need multi-user concurrent access.
-- Whisper's `base` model is used by default for speed; switch to
-  `small`/`medium` in `AudioVideoProcessor` for better transcription
-  accuracy at the cost of latency.
-- `yolov8n.pt` (nano) is the fastest YOLO checkpoint; swap to `yolov8s.pt`
-  or larger for better detection accuracy.
+| Category  | Extensions        | Pipeline                                     |
+| --------- | ----------------- | -------------------------------------------- |
+| Documents | .pdf, .docx, .txt | Text extraction + chunking                   |
+| Tabular   | .xlsx, .csv       | Pandas → schema + Markdown chunks            |
+| Audio     | .mp3, .wav, .m4a  | ffmpeg → Whisper transcription               |
+| Video     | .mp4, .mkv        | Whisper transcript + YOLOv8/vision keyframes |
+| Images    | .jpg, .png        | YOLOv8 detection + llama3.2-vision summary   |
